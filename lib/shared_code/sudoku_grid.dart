@@ -14,6 +14,26 @@ class SudokuGrid {
     }
   }
 
+  SudokuGrid.from(SudokuGrid oldGrid) {
+    for (var r = 0; r < Constants.gridSize; r++) {
+      for (var c = 0; c < Constants.gridSize; c++) {
+        _grid[r][c] = oldGrid[r][c];
+      }
+    }
+  }
+
+  bool get isEmpty {
+    for (final row in _grid) {
+      for (final col in row) {
+        if (col != 0) {
+          return false;
+        }
+      }
+    }
+
+    return true;
+  }
+
   @override
   String toString() {
     String returnStr = "";

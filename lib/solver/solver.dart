@@ -35,6 +35,10 @@ class Solver {
   }
 
   Solver(this.input) {
+    if (input.isEmpty) {
+      throw UnsolvableGrid();
+    }
+
     result = input;
 
     if (!_sudokuSolver(result)) {

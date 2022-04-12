@@ -13,11 +13,15 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Sudoku Demo',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
       home: Scaffold(
+        appBar: AppBar(
+          title: const Text('Sudoku Solver'),
+        ),
         body: ChangeNotifierProvider<SudokuChangeNotifier>(
           create: (context) => SudokuChangeNotifier(),
           child: const SafeArea(

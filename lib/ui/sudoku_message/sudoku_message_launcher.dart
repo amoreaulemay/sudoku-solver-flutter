@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:sudoku/states/sudoku_change_notifier.dart';
 
 class SudokuMessageLauncher extends StatelessWidget {
   final String? error;
@@ -19,6 +21,7 @@ class SudokuMessageLauncher extends StatelessWidget {
       SnackBar(
         content: Text(error),
         duration: const Duration(seconds: 2),
+        onVisible: () => Provider.of<SudokuChangeNotifier>(context, listen: false).resetErrorMessage(),
       ),
     );
   }

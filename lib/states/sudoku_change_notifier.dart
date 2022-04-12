@@ -29,15 +29,22 @@ class SudokuChangeNotifier extends ChangeNotifier {
     activeNumber = newValue;
   }
 
+  void resetErrorMessage() {
+    SudokuGrid tmp = SudokuGrid.from(grid);
+    grid.clear();
+    activeNumber = 0;
+    gridUnsolvable = false;
+    grid = SudokuGrid.from(tmp);
+    notifyListeners();
+  }
+
   void solveBoard() {
     try {
       final Solver solution = Solver(grid);
-      debugPrint(solution.result.toString());
       grid = solution.result;
       notifyListeners();
     } on UnsolvableGrid {
       gridUnsolvable = true;
-      debugPrint('Grid cannot be solved!');
       notifyListeners();
     }
   }
